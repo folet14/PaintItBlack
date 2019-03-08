@@ -78,22 +78,18 @@ def nombrecase(nb,ncase=9,affich=False,FNCbool=False):
 
 
 def FND(liste):
-    n=0
+    listetxt=''
     for i in range(len(liste)):
         var=1
-        n+=1
         for j in range(len(liste[i])):
             if liste[i][j]==1:
-                print(' '+str(var),end=' ')
+                listetxt+=' '+str(var)+' '
             else:
-                print(' -'+str(var),end=' ')
-            if j!=len(liste[i])-1:
-                print(' ',end='')
+                listetxt+='-'+str(var)+' '
             var+=1
-            print(' 0 ')
-    print()
-    print(n)
-
+        listetxt+=' 0\n'
+    print("p cnf "+str(len(liste[0]))+" "+str(len(liste))+"\n"+listetxt)
+   
 def FNDXOR(nb,ncase=9):
     FND(nombrecase(nb,ncase))
 
@@ -115,18 +111,24 @@ def FNC(liste):
 def FNCXOR(nb,ncase=9):
     FNC(nombrecase(nb,ncase,False,True))
 
-def fncPourCase(liste,nCase):
+def fncPourCase(liste,nCases=[1,2,3,4,5,6,7,8,9]):
     n=0
     listetxt=''
     for i in range(len(liste)):
-        var=1
+        var=0
         n+=1
         for j in range(len(liste[i])):
             if liste[i][j]==1:
-                listetxt+=' -'+str(var)+' '
+                listetxt+=' -'+str(nCases[var])+' '
             else:
-                listetxt+='  '+str(var)+' '
+                listetxt+='  '+str(nCases[var])+' '
             var+=1
         listetxt+=' 0\n'
     print("p cnf "+str(len(liste[0]))+" "+str(len(liste))+"\n"+listetxt)
-    
+
+def fncdecale(nb,ncase=9,nCases=[1,2,3,4,5,6,7,8,9]):
+    fncPourCase(nombrecase(nb,ncase,False,True),nCases)
+
+
+def simplification(liste):
+  pass  
