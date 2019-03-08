@@ -114,21 +114,27 @@ def FNCXOR(nb,ncase=9):
 def fncPourCase(liste,nCases=[1,2,3,4,5,6,7,8,9]):
     n=0
     listetxt=''
+    listeretourne=[]
     for i in range(len(liste)):
         var=0
         n+=1
+        listeretourne.append([])
         for j in range(len(liste[i])):
             if liste[i][j]==1:
                 listetxt+=' -'+str(nCases[var])+' '
+                listeretourne[i].append(-nCases[var])
             else:
                 listetxt+='  '+str(nCases[var])+' '
+                listeretourne[i].append(nCases[var])
             var+=1
         listetxt+=' 0\n'
     print("p cnf "+str(len(liste[0]))+" "+str(len(liste))+"\n"+listetxt)
+    return listeretourne
 
 def fncdecale(nb,ncase=9,nCases=[1,2,3,4,5,6,7,8,9]):
-    fncPourCase(nombrecase(nb,ncase,False,True),nCases)
-
+    liste=fncPourCase(nombrecase(nb,ncase,False,True),nCases)
 
 def simplification(liste):
-  pass  
+  pass
+
+fncdecale(input("nb? : "),9,[2,3,4,12,13,14,22,23,24])
